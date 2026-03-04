@@ -9,17 +9,21 @@ export default function Index() {
 
   useEffect(() => {
     if (!loading) {
-      if (user) {
-        if (user.role === 'cliente') {
-          router.replace('/(tabs)/client');
-        } else if (user.role === 'repartidor') {
-          router.replace('/(tabs)/driver');
-        } else if (user.role === 'admin') {
-          router.replace('/admin');
+      // Small delay to ensure navigation is ready
+      const timer = setTimeout(() => {
+        if (user) {
+          if (user.role === 'admin') {
+            router.replace('/admin');
+          } else if (user.role === 'repartidor') {
+            router.replace('/(tabs)/driver');
+          } else {
+            router.replace('/(tabs)/client');
+          }
+        } else {
+          router.replace('/login');
         }
-      } else {
-        router.replace('/login');
-      }
+      }, 100);
+      return () => clearTimeout(timer);
     }
   }, [user, loading]);
 
