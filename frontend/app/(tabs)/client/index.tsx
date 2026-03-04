@@ -20,6 +20,7 @@ import { useAuth } from '../../../src/contexts/AuthContext';
 import { useSocket } from '../../../src/contexts/SocketContext';
 import { orderAPI } from '../../../src/services/api';
 import { OrderCard } from '../../../src/components/OrderCard';
+import { NotificationBanner } from '../../../src/components/NotificationBanner';
 import * as Location from 'expo-location';
 
 interface Order {
