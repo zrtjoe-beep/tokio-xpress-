@@ -62,6 +62,7 @@ export const orderAPI = {
     origen_texto: string;
     destino_texto: string;
     client_location?: { lat: number; lng: number } | null;
+    payment_method?: string;
   }) => api.post('/orders', data),
   
   getMyOrders: () => api.get('/orders/my'),
@@ -71,6 +72,8 @@ export const orderAPI = {
   getDriverOrders: () => api.get('/orders/driver/my'),
   
   getOrder: (orderId: string) => api.get(`/orders/${orderId}`),
+  
+  getCourierLocation: (orderId: string) => api.get(`/orders/${orderId}/courier-location`),
   
   accept: (orderId: string) => api.post(`/orders/${orderId}/accept`),
   
@@ -96,6 +99,56 @@ export const ratingAPI = {
   
   getDriverRatings: (repartidorId: string) =>
     api.get(`/ratings/repartidor/${repartidorId}`),
+};
+
+// Courier Stats APIs
+export const courierAPI = {
+  getStats: () => api.get('/courier/stats'),
+  
+  updateLocation: (orderId: string, lat: number, lng: number) =>
+    api.post('/courier/location', { lat, lng }, { params: { order_id: orderId } }),
+};
+
+// Admin APIs
+export const adminAPI = {
+  getUsers: (role?: string) => api.get('/admin/users', { params: { role } }),
+  
+  getOrders: (status?: string) => api.get('/admin/orders', { params: { status } }),
+  
+  updateUserStatus: (userId: string, isActive: boolean) =>
+    api.patch(`/admin/users/${userId}/status`, { is_active: isActive }),
+  
+  assignDriver: (orderId: string, repartidorId: string) =>
+    api.patch(`/admin/orders/${orderId}/assign`, { repartidor_id: repartidorId }),
+  
+  updateOrderStatus: (orderId: string, status: string) =>
+    api.patch(`/admin/orders/${orderId}/status`, { status }),
+  
+  getStats: () => api.get('/admin/stats'),
+};
+
+// Payment APIs
+export const paymentAPI = {
+  getConfig: () => api.get('/payments/config'),
+  
+  createIntent: (orderId: string) =>
+    api.post('/payments/create-intent', { order_id: orderId }),
+  
+  confirmPayment: (orderId: string) =>
+    api.post('/payments/confirm', null, { params: { order_id: orderId } }),
+};
+
+// Push Notification APIs
+export const pushAPI = {
+  getPublicKey: () => api.get('/push/public-key'),
+  
+  subscribe: (subscription: { endpoint: string; keys: { p256dh: string; auth: string } }) =>
+    api.post('/push/subscribe', subscription),
+  
+  unsubscribe: (subscription: { endpoint: string; keys: { p256dh: string; auth: string } }) =>
+    api.post('/push/unsubscribe', subscription),
+  
+  test: () => api.post('/push/test'),
 };
 
 export default api;
