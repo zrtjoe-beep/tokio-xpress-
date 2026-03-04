@@ -101,3 +101,295 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: >
+  Build TOKIO XPRESS delivery app similar to Uber/Delivery with 2 roles (cliente, repartidor), 
+  optional admin role. Features: JWT auth, persistent sessions, orders CRUD, real-time tracking 
+  via WebSocket, chat in real-time, push notifications (Web Push), driver ratings. 
+  Must work on web mobile and desktop.
+
+backend:
+  - task: "User Registration API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "POST /api/auth/register working - tested with curl, returns access_token and user"
+
+  - task: "User Login API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "POST /api/auth/login working - returns JWT token and user info"
+
+  - task: "Get Current User API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "GET /api/auth/me working - returns authenticated user"
+
+  - task: "Create Order API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "POST /api/orders working - creates order with status pendiente"
+
+  - task: "Get Client Orders API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "GET /api/orders/my working - returns client's orders"
+
+  - task: "Get Pending Orders API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "GET /api/orders/pending working - returns pending orders for drivers"
+
+  - task: "Accept Order API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "POST /api/orders/{id}/accept working - assigns driver and changes status to aceptado"
+
+  - task: "Update Order Status API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "PATCH /api/orders/{id}/status working - updates status (aceptado, en_camino, completado, cancelado)"
+
+  - task: "Update Driver Location API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "PATCH /api/orders/{id}/location working - updates driver_location coordinates"
+
+  - task: "Chat Messages API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "GET/POST /api/orders/{id}/chat working - sends and retrieves chat messages"
+
+  - task: "Create Rating API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "POST /api/orders/{id}/rating working - creates rating for completed orders"
+
+  - task: "Get Driver Ratings API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "GET /api/ratings/repartidor/{id} working - returns average and list of ratings"
+
+  - task: "WebSocket Connection"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "WebSocket at /ws?token=... working - handles connections and broadcasts events"
+
+frontend:
+  - task: "Login Screen"
+    implemented: true
+    working: true
+    file: "/app/frontend/app/login.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Login screen working - dark theme, TOKIO XPRESS branding, connects to API"
+
+  - task: "Register Screen"
+    implemented: true
+    working: true
+    file: "/app/frontend/app/register.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Register screen working - role selector (cliente/repartidor), redirects to dashboard"
+
+  - task: "Client Dashboard"
+    implemented: true
+    working: true
+    file: "/app/frontend/app/(tabs)/client/index.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Client dashboard working - shows orders, create order modal, FAB button"
+
+  - task: "Driver Dashboard"
+    implemented: true
+    working: true
+    file: "/app/frontend/app/(tabs)/driver/index.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Driver dashboard working - tabs for Disponibles/Mis pedidos, shows rating"
+
+  - task: "Order Detail (Client)"
+    implemented: true
+    working: true
+    file: "/app/frontend/app/(tabs)/client/order/[id].tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Client order detail implemented - status banner, driver info, route, chat, rating"
+
+  - task: "Order Detail (Driver)"
+    implemented: true
+    working: true
+    file: "/app/frontend/app/(tabs)/driver/order/[id].tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Driver order detail implemented - status buttons, location sharing, chat"
+
+  - task: "Auth Context"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/contexts/AuthContext.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "AuthContext working - login/logout/register/rehydrate, AsyncStorage persistence"
+
+  - task: "Socket Context"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/contexts/SocketContext.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "SocketContext working - WebSocket connection, event subscription, auto-reconnect"
+
+  - task: "Diagnostic Panel"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/DiagnosticPanel.tsx"
+    stuck_count: 0
+    priority: "low"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Diagnostic panel implemented - shows token, user, WebSocket status, last event"
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: true
+
+test_plan:
+  current_focus:
+    - "Create Order flow"
+    - "Accept Order flow"
+    - "Chat functionality"
+    - "Rating functionality"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+  - agent: "main"
+    message: "TOKIO XPRESS MVP implementation complete. All backend APIs tested via curl and working. Frontend UI verified via screenshots - login, register, client dashboard, driver dashboard all rendering correctly. Ready for deeper E2E testing."
