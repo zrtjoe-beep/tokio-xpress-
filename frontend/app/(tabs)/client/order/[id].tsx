@@ -225,15 +225,15 @@ export default function ClientOrderDetail() {
           </View>
 
           {/* Driver location tracking */}
-          {order.driver_location && order.status === 'en_camino' && (
+          {['aceptado', 'en_camino'].includes(order.status) && (
             <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Ubicación del repartidor</Text>
-              <View style={styles.locationCard}>
-                <Ionicons name="navigate" size={24} color="#7C3AED" />
-                <Text style={styles.locationText}>
-                  Lat: {order.driver_location.lat.toFixed(6)}, Lng: {order.driver_location.lng.toFixed(6)}
-                </Text>
-              </View>
+              <Text style={styles.sectionTitle}>📍 Seguimiento en tiempo real</Text>
+              <MapTracking
+                driverLocation={order.driver_location}
+                clientLocation={order.client_location}
+                originText={order.origen_texto}
+                destinationText={order.destino_texto}
+              />
             </View>
           )}
 
