@@ -11,7 +11,7 @@ from datetime import datetime
 from typing import Dict, Any, Optional
 
 # Configuration
-BASE_URL = "https://delivery-tokio.preview.emergentagent.com/api"
+BASE_URL = "https://ride-share-app-113.preview.emergentagent.com/api"
 TIMEOUT = 30
 
 class TokioXpressAPITester:

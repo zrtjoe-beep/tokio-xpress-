@@ -10,7 +10,7 @@ import sys
 from datetime import datetime
 
 # Configuration
-BASE_URL = "https://delivery-tokio.preview.emergentagent.com/api"
+BASE_URL = "https://ride-share-app-113.preview.emergentagent.com/api"
 ADMIN_EMAIL = "admin@tokioxpress.com"
 ADMIN_PASSWORD = "admin123"
 COURIER_EMAIL = "repartidor@test.com"
