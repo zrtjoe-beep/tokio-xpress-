@@ -12,10 +12,10 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { useAuth } from '../../src/contexts/AuthContext';
-import { useSocket } from '../../src/contexts/SocketContext';
-import { orderAPI, ratingAPI } from '../../src/services/api';
-import { OrderCard } from '../../src/components/OrderCard';
+import { useAuth } from '../../../src/contexts/AuthContext';
+import { useSocket } from '../../../src/contexts/SocketContext';
+import { orderAPI, ratingAPI } from '../../../src/services/api';
+import { OrderCard } from '../../../src/components/OrderCard';
 
 interface Order {
   id: string;
