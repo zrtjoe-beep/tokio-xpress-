@@ -168,6 +168,9 @@ export default function ClientDashboard() {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#E11D48" />
         }
       >
+        {/* Notification banner */}
+        <NotificationBanner />
+
         {/* Welcome message */}
         <View style={styles.welcomeContainer}>
           <Text style={styles.welcomeText}>Hola, {user?.nombre}</Text>
