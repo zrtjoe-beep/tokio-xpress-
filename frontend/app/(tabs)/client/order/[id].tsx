@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -17,6 +17,7 @@ import { useSocket } from '../../../../src/contexts/SocketContext';
 import { orderAPI, ratingAPI } from '../../../../src/services/api';
 import { ChatComponent } from '../../../../src/components/ChatComponent';
 import { RatingModal } from '../../../../src/components/RatingModal';
+import { MapTracking } from '../../../../src/components/MapTracking';
 
 interface Order {
   id: string;
