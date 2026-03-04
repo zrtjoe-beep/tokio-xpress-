@@ -280,6 +280,19 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
   },
   statsLeft: {},
+  statsRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  statsButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#E11D48',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   welcomeText: {
     fontSize: 20,
     fontWeight: '700',
