@@ -128,13 +128,24 @@ export default function DriverDashboard() {
           <Text style={styles.welcomeText}>Hola, {user?.nombre}</Text>
           <Text style={styles.roleText}>Repartidor</Text>
         </View>
-        {driverRating && driverRating.count > 0 && (
-          <View style={styles.ratingBadge}>
-            <Ionicons name="star" size={16} color="#F59E0B" />
-            <Text style={styles.ratingText}>{driverRating.average.toFixed(1)}</Text>
-            <Text style={styles.ratingCount}>({driverRating.count})</Text>
-          </View>
-        )}
+        <View style={styles.statsRight}>
+          {driverRating && driverRating.count > 0 && (
+            <TouchableOpacity 
+              style={styles.ratingBadge}
+              onPress={() => router.push('/(tabs)/driver/stats')}
+            >
+              <Ionicons name="star" size={16} color="#F59E0B" />
+              <Text style={styles.ratingText}>{driverRating.average.toFixed(1)}</Text>
+              <Text style={styles.ratingCount}>({driverRating.count})</Text>
+            </TouchableOpacity>
+          )}
+          <TouchableOpacity 
+            style={styles.statsButton}
+            onPress={() => router.push('/(tabs)/driver/stats')}
+          >
+            <Ionicons name="stats-chart" size={20} color="#fff" />
+          </TouchableOpacity>
+        </View>
       </View>
 
       {/* Tabs */}
