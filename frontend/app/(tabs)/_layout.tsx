@@ -73,7 +73,6 @@ export default function TabsLayout() {
           }}
         />
       </Tabs>
-      <DiagnosticPanel />
     </View>
   );
 }
