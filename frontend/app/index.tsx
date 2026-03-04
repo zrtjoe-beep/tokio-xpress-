@@ -15,7 +15,7 @@ export default function Index() {
         } else if (user.role === 'repartidor') {
           router.replace('/(tabs)/driver');
         } else if (user.role === 'admin') {
-          router.replace('/(tabs)/client');
+          router.replace('/admin');
         }
       } else {
         router.replace('/login');
